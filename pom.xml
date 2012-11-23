@@ -12,6 +12,7 @@
         <version.hibernate>4.1.8.Final</version.hibernate>
         <version.jackson>1.9.11</version.jackson>
         <version.slf4j>1.7.2</version.slf4j>
+        <version.h2>1.3.165</version.h2>
     </properties>
     <dependencies>
         <dependency>
@@ -114,7 +115,7 @@
                 <dependency>
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
-                    <version>1.3.165</version>
+                    <version>${version.h2}</version>
                 </dependency>
                 <dependency>
                     <groupId>javax.servlet</groupId>
@@ -133,6 +134,42 @@
                         <groupId>org.mortbay.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
                         <version>8.1.8.v20121106</version>
+                        <configuration>
+                            <systemProperties>
+                                <systemProperty>
+                                    <name>spring.profiles.active</name>
+                                    <value>integration</value>
+                                </systemProperty>
+                            </systemProperties>
+                            <webApp>
+                                <contextPath>/productsSelling</contextPath>
+                            </webApp>
+                        </configuration>
+                    </plugin>
+                     <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>1.7</version>
+                        <executions>
+                            <execution>
+                                <id>add-resource</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/test/resources/spring</directory>
+                                            <targetPath>${project.build.outputDirectory}/spring</targetPath>
+                                            <includes>
+                                                <include>integration.xml</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -155,7 +192,26 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <delete file="${project.build.outputDirectory}/spring/integration.xml"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>

@@ -16,7 +16,7 @@ public class WebConfigurer implements ServletContextListener {
         ServletContext servletContext = sce.getServletContext();
 
         XmlWebApplicationContext rootContext = new XmlWebApplicationContext();
-        rootContext.setConfigLocation("classpath:/spring/applicationContext.xml, classpath:/spring/persistence-context.xml");
+        rootContext.setConfigLocation("classpath:/spring/*.xml");
         rootContext.refresh();
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, rootContext);
 

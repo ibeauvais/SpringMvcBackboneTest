@@ -7,7 +7,7 @@
 
         <class>fr.ib.test.springMvcTest.domain.Product</class>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
