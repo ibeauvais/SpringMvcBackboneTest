@@ -15,7 +15,6 @@ import java.util.List;
 public class ProductResources {
 
 
-
     @Inject
     private ProductRepository productRepository;
 
@@ -29,9 +28,8 @@ public class ProductResources {
 
     @RequestMapping(value = "product", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-     @ResponseBody
+    @ResponseBody
     public Product create(@RequestBody Product product) {
-
         return productRepository.save(product);
     }
 
