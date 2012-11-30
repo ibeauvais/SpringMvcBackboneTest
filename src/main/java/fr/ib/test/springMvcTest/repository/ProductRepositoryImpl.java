@@ -1,6 +1,7 @@
 package fr.ib.test.springMvcTest.repository;
 
 
+import fr.ib.test.springMvcTest.common.log.Log;
 import fr.ib.test.springMvcTest.domain.Product;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,7 +18,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     @PersistenceContext
     private EntityManager em;
 
-
+     @Log
     @Override
     public List<Product> findByNameContain(String namePart) {
         TypedQuery<Product> query = em.createNamedQuery(Product.FIND_BY_NAME_LIKE, Product.class);
@@ -27,6 +28,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     }
 
+    @Log
     @Override
     public List<Product> findAll() {
 
@@ -34,7 +36,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         return query.getResultList();
 
     }
-
+     @Log
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Product save(Product product) {

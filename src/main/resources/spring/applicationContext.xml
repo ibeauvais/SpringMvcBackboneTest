@@ -13,5 +13,5 @@
 
     <tx:annotation-driven/>
 
-
+      <import resource="aspect-context.xml" />
 </beans>

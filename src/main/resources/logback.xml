@@ -1,13 +1,15 @@
 <configuration>
-  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
 
-     <!--<logger name="org.hibernate.transaction" level="DEBUG"/>-->
-  <root level="INFO">
-    <appender-ref ref="console" />
-  </root>
+    <logger name="fr.ib.test.springMvcTest.repository" level="DEBUG"/>
+    <logger name="fr.ib.test.springMvcTest.configuration.DataLoader" level="INFO"/>
+
+    <root level="WARN">
+        <appender-ref ref="console"/>
+    </root>
 </configuration>
