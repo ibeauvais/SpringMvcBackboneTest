@@ -33,7 +33,10 @@ public class ProductController {
     @RequestMapping(value = "/rs/productSearch", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
     public List<Product> searchQuery(@RequestParam("searchString") String searchString) {
+      log.error("searchString {}",searchString);
         List<Product> company= productRepository.findByNameContain(searchString);
+
+        log.error("{}",company);
         return company;
     }
 

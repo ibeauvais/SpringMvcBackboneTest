@@ -9,4 +9,7 @@ public interface ProductRepository {
 
        List<Product> findByNameContain(String namePart);
 
+    List<Product> findAll();
+
+    Product save(Product product);
 }
